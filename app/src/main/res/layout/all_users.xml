@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/all_users"
     android:orientation="vertical">
 
     <ListView
@@ -29,5 +30,12 @@
         android:layout_width="187dp"
         android:layout_height="wrap_content"
         android:text="Search" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:text="Go To Chatroom" />
+
 
 </LinearLayout>
