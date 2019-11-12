@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,11 +38,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AllUsers extends AppCompatActivity {
+public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private static int SIGN_IN_REQUEST_CODE = 1;
     private DatabaseReference mDatabase;
     private ListView listView;
-    private LinearLayout all_users;
+    private RelativeLayout all_users;
     private ArrayList<UserInformation> arrayList = new ArrayList<>();
     private ArrayList<String> display = new ArrayList<>();
     private ArrayAdapter<UserInformation> adapter;
@@ -48,6 +50,9 @@ public class AllUsers extends AppCompatActivity {
     private Button search;
     private Button toChatroom;
     private EditText field;
+    public String[] skillNames={"Data Entry","Graphic Design","xx","xxx","xxxx"};
+    private String retrieval;
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -86,8 +91,13 @@ public class AllUsers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        all_users = (LinearLayout) findViewById(R.id.all_users);
+        all_users = (RelativeLayout) findViewById(R.id.all_users);
         setContentView(R.layout.all_users);
+        Spinner spin = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,skillNames);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(aa);
+        spin.setOnItemSelectedListener(this);
         search = (Button) findViewById(R.id.button4);
         toChatroom = (Button) findViewById(R.id.button5);
         toChatroom.setOnClickListener(new View.OnClickListener(){
@@ -101,37 +111,31 @@ public class AllUsers extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                field = (EditText) findViewById(R.id.editText2);
-                mDatabase.orderByChild("1").equalTo(field.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                                                                   @Override
-                                                                                                                   public void onDataChange(DataSnapshot dataSnapshot) {
-                                                                                                                       for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                                                                                                                           Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
-                                                                                                                           Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
-                                                                                                                       }
-                                                                                                                   }
-
-                                                                                                                   @Override
-                                                                                                                   public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                                                                                   }
-                                                                                                               }
-                );
-                mDatabase.orderByChild("2").equalTo(field.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                                                                   @Override
-                                                                                                                   public void onDataChange(DataSnapshot dataSnapshot) {
-                                                                                                                       for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                                                                                                                           Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
-                                                                                                                           Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
-                                                                                                                           Log.d("Testing output2", (String) childDataSnapshot.child("email").getValue());
-
-                                                                                                                       }
-                                                                                                                   }
-
-                                                                                                                   @Override
-                                                                                                                   public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                                                                                   }
-                                                                                                               }
-                );
+                mDatabase.orderByChild("1").equalTo(retrieval).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                            Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
+                            Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+                mDatabase.orderByChild("2").equalTo(retrieval).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                            Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
+                            Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
+                            Log.d("Testing output2", (String) childDataSnapshot.child("email").getValue());
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
         });
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
@@ -140,6 +144,16 @@ public class AllUsers extends AppCompatActivity {
             display();
         }
     }
+
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+        retrieval = skillNames[position];
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     private void display()
     {
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -192,5 +206,10 @@ public class AllUsers extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
