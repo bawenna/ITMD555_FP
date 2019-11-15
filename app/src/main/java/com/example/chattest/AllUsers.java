@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,7 +51,8 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
     private Button search;
     private Button toChatroom;
     private EditText field;
-    public String[] skillNames={"Data Entry","Graphic Design","xx","xxx","xxxx"};
+    private StringBuilder s = new StringBuilder();
+    public String[] skillNames={"Data Entry","Graphic Design","Programming(Node.js)","Programming(java)"};
     private String retrieval;
 
 
@@ -117,6 +119,10 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
                         for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                             Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
                             Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
+                            s.append("\n");
+                            s.append((String) childDataSnapshot.child("name").getValue());
+                            s.append("\n");
+                            s.append((String) childDataSnapshot.child("email").getValue());
                         }
                     }
                     @Override
@@ -130,12 +136,28 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
                             Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
                             Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
                             Log.d("Testing output2", (String) childDataSnapshot.child("email").getValue());
+                            s.append("\n");
+                            s.append((String) childDataSnapshot.child("name").getValue());
+                            s.append("\n");
+                            s.append((String) childDataSnapshot.child("email").getValue());
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
+                AlertDialog alertDialog = new AlertDialog.Builder(AllUsers.this).create();
+                alertDialog.setTitle("Result");
+                alertDialog.setMessage(s);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                s = new StringBuilder();
             }
         });
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
@@ -193,8 +215,18 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 UserInformation usertest = adapter.getItem(position);
                 AlertDialog alertDialog = new AlertDialog.Builder(AllUsers.this).create();
-                alertDialog.setTitle("iNFO");
-                alertDialog.setMessage("Name:" + usertest.getName() + usertest.getEmail() + usertest.getInterest());
+                alertDialog.setTitle(usertest.getName());
+                String alert2 = "Email: " + usertest.getEmail();
+                String alert3 = "Skill(s): N/A";
+                if (usertest.getInterest() != null)
+                {
+                    alert3 = "Skill(s): " + usertest.getInterest();
+                }
+                if (usertest.getInterest2() != null)
+                {
+                    alert3 = "Skill(s): " + usertest.getInterest() + ", " + usertest.getInterest2();
+                }
+                alertDialog.setMessage(alert2+"\n"+alert3);
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -202,7 +234,7 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
                             }
                         });
                 alertDialog.show();
-                usertest.setName("");
+                //usertest.setName("");
 
             }
         });
