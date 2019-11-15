@@ -81,6 +81,7 @@ public class editInformation extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         //get user id from firebase authentication, see who is logged in for now
         userID = user.getUid();
+        mName.setText(user.getDisplayName());
         mEmail.setText(user.getEmail());
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -142,7 +143,7 @@ public class editInformation extends AppCompatActivity {
                 UserInformation userInformation = new UserInformation(name,email);
                 //grab database object users
                 current_user_db.setValue(userInformation);
-                toastMessage("Infomation saved!");
+                toastMessage("Information saved!");
                 int id = 0;
 
                 if(!name.equals("") && !email.equals("")){
