@@ -111,10 +111,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="283dp"
-        android:layout_marginEnd="0dp"
-        android:text="Save" />
+        android:text="Save"
+        android:textColor="@color/buttonTextColor"
+        android:background="@color/mainColor"/>
 
     <Button
         android:id="@+id/button6"
@@ -123,9 +125,12 @@
         android:layout_below="@+id/btnSubmit"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="3dp"
-        android:text="Home" />
+        android:layout_marginBottom="8dp"
+        android:text="Home"
+        android:textColor="@color/buttonTextColor"
+        android:background="@color/mainColor"/>
 
 </RelativeLayout>
