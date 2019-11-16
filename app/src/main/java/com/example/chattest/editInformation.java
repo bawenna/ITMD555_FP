@@ -90,7 +90,7 @@ public class editInformation extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    toastMessage("You are now modifying the user information with email:" + user.getEmail());
+                    toastMessage("You are now modifying the user information with email: " + user.getEmail());
                 } else {
                     toastMessage("Successfully signed out.");
                 }

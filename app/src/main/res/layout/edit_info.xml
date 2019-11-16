@@ -24,24 +24,27 @@
         android:id="@+id/textName"/>
 
     <TextView
-        android:text="Email: "
+        android:id="@+id/textEmail"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@+id/textName"
         android:layout_alignEnd="@+id/textName"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
         android:gravity="bottom"
-        android:id="@+id/textEmail"/>
+        android:text="Email: " />
+
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="200dp"
         android:layout_height="40dp"
+        android:layout_below="@+id/textName"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="19dp"
         android:layout_toRightOf="@+id/textEmail"
         android:gravity="bottom"
-        android:textAlignment="center"
-        android:layout_below="@+id/textName"
-        />
-
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/textInterest"
@@ -49,10 +52,10 @@
         android:layout_height="40dp"
         android:layout_below="@+id/textEmail"
         android:layout_alignEnd="@+id/textEmail"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="-94dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="-213dp"
         android:gravity="bottom"
-        android:text="Interest:" />
+        android:text="Select your 1-2 most professional skill(s): " />
 
     <CheckBox
         android:id="@+id/cnBinterest1"
@@ -60,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="239dp"
-        android:layout_marginEnd="256dp"
+        android:layout_marginTop="254dp"
+        android:layout_marginEnd="257dp"
         android:text="Data Entry" />
 
     <CheckBox
@@ -80,8 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="239dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="38dp"
         android:text="Programming(Node.js)" />
 
     <CheckBox
@@ -98,25 +101,26 @@
         android:id="@+id/etName"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:gravity="bottom"
-        android:textAlignment="center"
+        android:layout_marginLeft="2dp"
         android:layout_marginTop="83dp"
-        android:layout_toRightOf="@+id/textName"/>
+        android:layout_toRightOf="@+id/textName"
+        android:gravity="bottom"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textInterest"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="283dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="271dp"
+        android:layout_marginEnd="17dp"
+        android:background="@color/colorPrimary"
         android:text="Save"
-        android:textColor="@color/buttonTextColor"
-        android:background="@color/colorPrimary"/>
+        android:textColor="@color/buttonTextColor" />
 
     <Button
         android:id="@+id/button6"
