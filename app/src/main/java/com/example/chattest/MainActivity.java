@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseListAdapter<Message> adapter;
     RelativeLayout activity_main;
     FloatingActionButton sendMessage;
-    Button button2;
+    //Button button2;
     Button button3;
     public FirebaseDatabase mFirebaseDatabase;
     public FirebaseAuth mAuth;
@@ -112,14 +112,14 @@ public class MainActivity extends AppCompatActivity {
             mFirebaseDatabase = FirebaseDatabase.getInstance();
             myRef = mFirebaseDatabase.getReference();
             //go to edit information page
-            button2 = findViewById(R.id.button2);
+        /*    button2 = findViewById(R.id.button2);
             button2.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     System.out.println("Clicked!");
                     Intent intent = new Intent(MainActivity.this, editInformation.class);
                     startActivity(intent);
                 }
-            });
+            });*/
             //go to all users page
             button3 = findViewById(R.id.button3);
             button3.setOnClickListener(new Button.OnClickListener() {

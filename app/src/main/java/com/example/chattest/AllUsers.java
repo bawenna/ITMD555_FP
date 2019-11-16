@@ -54,7 +54,7 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
     private StringBuilder s = new StringBuilder();
     public String[] skillNames={"Data Entry","Graphic Design","Programming(Node.js)","Programming(java)"};
     private String retrieval;
-
+    Button button2;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -103,10 +103,18 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
         search = (Button) findViewById(R.id.button4);
         toChatroom = (Button) findViewById(R.id.button5);
         toChatroom.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AllUsers.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+         //go to edit information page
+        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Clicked!");
+                Intent intent = new Intent(AllUsers.this, editInformation.class);
                 startActivity(intent);
             }
         });
