@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText input = (EditText) findViewById(R.id.input);
                 FirebaseDatabase.getInstance().getReference().push().setValue(new Message(input.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                        FirebaseAuth.getInstance().getCurrentUser().getDisplayName()));
                 input.setText("");
             }
         });
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
             mFirebaseDatabase = FirebaseDatabase.getInstance();
             myRef = mFirebaseDatabase.getReference();
+            //go to edit information page
             button2 = findViewById(R.id.button2);
             button2.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            //go to all users page
             button3 = findViewById(R.id.button3);
             button3.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
