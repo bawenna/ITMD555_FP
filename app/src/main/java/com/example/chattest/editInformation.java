@@ -1,5 +1,6 @@
 package com.example.chattest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,7 @@ public class editInformation extends AppCompatActivity {
     String interest2;
     String interest3;
     String interest4;
+    Button home;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -172,8 +174,17 @@ public class editInformation extends AppCompatActivity {
                 }
             }
         });
-    }
 
+        //go to edit information page
+            home = findViewById(R.id.button6);
+            home.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    System.out.println("Clicked!");
+                    Intent intent = new Intent(editInformation.this, AllUsers.class);
+                    startActivity(intent);
+                }
+            });
+    }
     @Override
     public void onStart() {
         super.onStart();

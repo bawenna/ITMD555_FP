@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your information"
+        android:text="Edit Portfolio"
         android:textSize="30sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -42,15 +42,17 @@
         android:layout_below="@+id/textName"
         />
 
+
     <TextView
-        android:text="Interest:"
+        android:id="@+id/textInterest"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@+id/textEmail"
         android:layout_alignEnd="@+id/textEmail"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="-94dp"
         android:gravity="bottom"
-        android:id="@+id/textInterest"/>
-
+        android:text="Interest:" />
 
     <CheckBox
         android:id="@+id/cnBinterest1"
@@ -68,8 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="310dp"
-        android:layout_marginEnd="252dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="227dp"
         android:text="Graphic Design" />
 
     <CheckBox
@@ -78,8 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="235dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="239dp"
+        android:layout_marginEnd="36dp"
         android:text="Programming(Node.js)" />
 
     <CheckBox
@@ -88,8 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="310dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="57dp"
         android:text="Programming(java)" />
 
     <EditText
@@ -103,11 +105,27 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textInterest"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="227dp"
-        android:text="Submit" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="0dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="3dp"
+        android:text="Home" />
 
 </RelativeLayout>
