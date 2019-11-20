@@ -33,6 +33,8 @@ public class Message {
     }
 
     public long getTime() {
+//        System.out.println("time");
+//        System.out.println(time);
         return time;
     }
 
