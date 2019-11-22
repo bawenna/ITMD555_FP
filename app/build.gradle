@@ -35,6 +35,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.0'
 
 
+    implementation 'com.github.lguipeng:BubbleView:1.0.1'
+
 
 }
 apply plugin: 'com.google.gms.google-services'

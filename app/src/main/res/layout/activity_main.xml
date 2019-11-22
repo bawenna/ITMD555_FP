@@ -46,7 +46,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="16dp" />
+        android:dividerHeight="16dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
+        />
 
     <Button
         android:id="@+id/button3"

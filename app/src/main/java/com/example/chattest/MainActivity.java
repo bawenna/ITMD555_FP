@@ -5,18 +5,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.github.library.bubbleview.BubbleTextView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -139,12 +144,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void populateView(View v, Message model, int position) {
                 TextView messageText,messageUser,messageTime;
-                messageText = (TextView) v.findViewById(R.id.msg_text);
+                //TextView messageText_r,messageUser_r,messageTime_r;
+
+                messageText = (BubbleTextView) v.findViewById(R.id.msg_text);
                 messageUser = (TextView) v.findViewById(R.id.msg_sender);
                 messageTime = (TextView) v.findViewById(R.id.msg_time);
-                messageText.setText(model.getMessage());
-                messageUser.setText(model.getSender());
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTime()));
+
+                //messageText_r = (BubbleTextView) v.findViewById(R.id.msg_text_r);
+                //messageUser_r = (TextView) v.findViewById(R.id.msg_sender_r);
+                //messageTime_r = (TextView) v.findViewById(R.id.msg_time_r);
+
+
+                if (model.getTime() != 0){
+                    System.out.println("current user is" + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                    System.out.println("sender is " + model.getSender());
+
+                    if (model.getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getDisplayName())){
+                        messageText.setText(model.getMessage());
+                        messageUser.setText(model.getSender());
+                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTime()));
+                    } else {
+
+                        messageText.setText(model.getMessage());
+                        messageUser.setText(model.getSender());
+                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTime()));
+                    }
+
+                }
+
             }
         };
         listOfMessage.setAdapter(adapter);
