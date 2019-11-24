@@ -125,12 +125,13 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                            Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
-                            Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
                             s.append("\n");
                             s.append((String) childDataSnapshot.child("name").getValue());
                             s.append("\n");
                             s.append((String) childDataSnapshot.child("email").getValue());
+                            Log.d("Testing output2", "PARENT: " + childDataSnapshot.getKey());
+                            Log.d("Testing output2", (String) childDataSnapshot.child("name").getValue());
+                            Log.d("Testing stringbuilder", s.toString());
                         }
                     }
                     @Override
@@ -149,22 +150,23 @@ public class AllUsers extends AppCompatActivity implements AdapterView.OnItemSel
                             s.append("\n");
                             s.append((String) childDataSnapshot.child("email").getValue());
                         }
+                        AlertDialog alertDialog = new AlertDialog.Builder(AllUsers.this).create();
+                        alertDialog.setTitle("Result");
+                        alertDialog.setMessage(s);
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-                AlertDialog alertDialog = new AlertDialog.Builder(AllUsers.this).create();
-                alertDialog.setTitle("Result");
-                alertDialog.setMessage(s);
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
                 s = new StringBuilder();
             }
         });
