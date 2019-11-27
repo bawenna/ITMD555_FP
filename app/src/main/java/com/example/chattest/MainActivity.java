@@ -150,25 +150,14 @@ public class MainActivity extends AppCompatActivity {
                 messageUser = (TextView) v.findViewById(R.id.msg_sender);
                 messageTime = (TextView) v.findViewById(R.id.msg_time);
 
-                //messageText_r = (BubbleTextView) v.findViewById(R.id.msg_text_r);
-                //messageUser_r = (TextView) v.findViewById(R.id.msg_sender_r);
-                //messageTime_r = (TextView) v.findViewById(R.id.msg_time_r);
-
 
                 if (model.getTime() != 0){
                     System.out.println("current user is" + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     System.out.println("sender is " + model.getSender());
 
-                    if (model.getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getDisplayName())){
                         messageText.setText(model.getMessage());
                         messageUser.setText(model.getSender());
                         messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTime()));
-                    } else {
-
-                        messageText.setText(model.getMessage());
-                        messageUser.setText(model.getSender());
-                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getTime()));
-                    }
 
                 }
 

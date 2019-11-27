@@ -25,6 +25,7 @@
         android:layout_toEndOf="@+id/input"
         android:clickable="true"
         android:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_send_24dp"
         app:fabSize="mini" />
 
     <EditText
