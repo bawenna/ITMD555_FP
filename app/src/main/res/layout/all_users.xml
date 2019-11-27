@@ -42,7 +42,7 @@
         android:layout_marginBottom="6dp"
         android:layout_toStartOf="@+id/button2"
         android:background="@color/colorPrimary"
-        android:text="Chat Room"
+        android:text="Job Board"
         android:textColor="@color/buttonTextColor" />
 
     <Spinner
